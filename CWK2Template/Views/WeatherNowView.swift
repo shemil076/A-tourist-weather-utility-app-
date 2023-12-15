@@ -24,6 +24,20 @@ struct WeatherNowView: View {
                         Task {
                             do {
                                 // write code to process user change of location
+                                
+                                try await weatherMapViewModel.getCoordinatesForCity(cityName: "\(temporaryCity)")
+                                
+//                                print("NEW LOCATION")
+//                                print("\(newLocation)")
+//                                print("\(weatherMapViewModel.coordinates?.latitude)")
+//                                print("\(weatherMapViewModel.coordinates?.longitude)")
+                                
+                                let weatherData = try await weatherMapViewModel.loadData(lat: weatherMapViewModel.coordinates?.latitude ?? Constants.defualtLatitude, lon: weatherMapViewModel.coordinates?.longitude ?? Constants.defualtLongitude)
+                                
+//                                print("========================================><===========")
+                                
+                                
+                                
                             } catch {
                                 print("Error: \(error)")
                                 isLoading = false
@@ -61,11 +75,20 @@ struct WeatherNowView: View {
                     .foregroundColor(.black)
                     .shadow(color: .black, radius: 1)
 
-                HStack{
+                VStack{
                    
                     // Weather Temperature Value
                     if let forecast = weatherMapViewModel.weatherDataModel {
                         Text("Temp: \((Double)(forecast.current.temp), specifier: "%.2f") ºC")
+                            .font(.system(size: 25, weight: .medium))
+                        
+                        Text("Humidity: \((Double)(forecast.current.humidity), specifier: "%.2f") %")
+                            .font(.system(size: 25, weight: .medium))
+                        
+                        Text("Pressure: \((Double)(forecast.current.pressure), specifier: "%.2f") hPa")
+                            .font(.system(size: 25, weight: .medium))
+                        
+                        Text("Wind Speed: \((Double)(forecast.current.windSpeed), specifier: "%.2f") mph")
                             .font(.system(size: 25, weight: .medium))
                     } else {
                         Text("Temp: N/A")
@@ -83,4 +106,5 @@ struct WeatherNowView_Previews: PreviewProvider {
         WeatherNowView()
     }
 }
+
 

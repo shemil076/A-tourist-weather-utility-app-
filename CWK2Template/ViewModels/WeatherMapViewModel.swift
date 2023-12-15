@@ -19,8 +19,8 @@ class WeatherMapViewModel: ObservableObject {
 // MARK:  create Task to load London weather data when the app first launches
         Task {
             do {
-                try await getCoordinatesForCity()
-                let weatherData = try await loadData(lat: coordinates?.latitude ?? 51.503300, lon: coordinates?.longitude ?? -0.079400)
+                try await getCoordinatesForCity(cityName: "London")
+                let weatherData = try await loadData(lat: coordinates?.latitude ?? Constants.defualtLatitude, lon: coordinates?.longitude ?? Constants.defualtLongitude)
                 print("Weather data loaded: \(String(describing: weatherData.timezone))")
                 
             } catch {
@@ -29,10 +29,20 @@ class WeatherMapViewModel: ObservableObject {
             }
         }
     }
-    func getCoordinatesForCity() async throws {
+    func getCoordinatesForCity(cityName: String) async throws {
 // MARK:  complete the code to get user coordinates for user entered place
 // and specify the map region
-
+        
+        let locations: [Location] = loadLocationsFromJSONFile() ?? []
+        
+        
+        if let location = locations.first(where: { $0.cityName == "\(cityName)" }) {
+            
+            print("=======>> calling getCoordinatesForCity() ")
+            print("Latitude: \(location.coordinates.latitude), Longitude: \(location.coordinates.longitude)")
+                } else {
+                    print("City not found")
+                }
         let geocoder = CLGeocoder()
         if let placemarks = try? await geocoder.geocodeAddressString(city),
            let location = placemarks.first?.location?.coordinate {
@@ -49,7 +59,7 @@ class WeatherMapViewModel: ObservableObject {
 
     func loadData(lat: Double, lon: Double) async throws -> WeatherDataModel {
 // MARK:  add your appid in the url below:
-        if let url = URL(string: "https://api.openweathermap.org/data/3.0/onecall?lat=\(lat)&lon=\(lon)&units=metric&appid=0ca4338748c395bc51fcc7c5ae7d1e9b") {
+        if let url = URL(string: "https://api.openweathermap.org/data/3.0/onecall?lat=\(lat)&lon=\(lon)&units=metric&appid=\(Constants.appId)") {
             let session = URLSession(configuration: .default)
 
             do {
@@ -121,6 +131,15 @@ class WeatherMapViewModel: ObservableObject {
                     print("Temp for last day: \(weatherDataModel.daily[dailyCount-1].temp)")
                 }
                 print("//daily complete")
+                
+                print("================================")
+                
+                print(weatherDataModel.current.temp)
+                print(weatherDataModel.timezone)
+                print(weatherDataModel.current.weather[0].weatherDescription)
+                
+                print("================================")
+                
                 return weatherDataModel
             } catch {
 
@@ -142,8 +161,8 @@ class WeatherMapViewModel: ObservableObject {
         case invalidURL
     }
 
-
-    func loadLocationsFromJSONFile(cityName: String) -> [Location]? {
+//  func loadLocationsFromJSONFile(cityName: String) -> [Location]?
+    func loadLocationsFromJSONFile() -> [Location]? {
         if let fileURL = Bundle.main.url(forResource: "places", withExtension: "json") {
             do {
                 let data = try Data(contentsOf: fileURL)
