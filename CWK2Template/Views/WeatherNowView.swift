@@ -32,7 +32,7 @@ struct WeatherNowView: View {
 //                                print("\(weatherMapViewModel.coordinates?.latitude)")
 //                                print("\(weatherMapViewModel.coordinates?.longitude)")
                                 
-                                let weatherData = try await weatherMapViewModel.loadData(lat: weatherMapViewModel.coordinates?.latitude ?? Constants.defualtLatitude, lon: weatherMapViewModel.coordinates?.longitude ?? Constants.defualtLongitude)
+                                _ = try await weatherMapViewModel.loadData(lat: weatherMapViewModel.coordinates?.latitude ?? Constants.defualtLatitude, lon: weatherMapViewModel.coordinates?.longitude ?? Constants.defualtLongitude)
                                 
 //                                print("========================================><===========")
                                 
@@ -79,6 +79,19 @@ struct WeatherNowView: View {
                    
                     // Weather Temperature Value
                     if let forecast = weatherMapViewModel.weatherDataModel {
+                        
+                        let des =  String(forecast.current.weather[0].weatherDescription.rawValue)
+                        
+//                        Image(forecast.current.weather[0].icon)
+                        
+                        Label {
+                            Text(des)
+                        } icon: {
+                           AsyncImage(url: URL(string: "https://openweathermap.org/img/wn/\(forecast.current.weather[0].icon)@2x.png"))
+                        }
+
+
+                        
                         Text("Temp: \((Double)(forecast.current.temp), specifier: "%.2f") ºC")
                             .font(.system(size: 25, weight: .medium))
                         
