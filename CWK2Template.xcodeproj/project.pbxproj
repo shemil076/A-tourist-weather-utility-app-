@@ -24,6 +24,7 @@
 		689617A42AF3B6F800FC5FBE /* HourWeatherView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 689617A32AF3B6F800FC5FBE /* HourWeatherView.swift */; };
 		689617A62AF3CAB300FC5FBE /* DailyWeatherView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 689617A52AF3CAB300FC5FBE /* DailyWeatherView.swift */; };
 		AD8EFC022B2C2B8400F135CF /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD8EFC012B2C2B8400F135CF /* Constants.swift */; };
+		AD8EFC262B30464900F135CF /* Background.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD8EFC252B30464900F135CF /* Background.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -45,6 +46,7 @@
 		689617A32AF3B6F800FC5FBE /* HourWeatherView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HourWeatherView.swift; sourceTree = "<group>"; };
 		689617A52AF3CAB300FC5FBE /* DailyWeatherView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DailyWeatherView.swift; sourceTree = "<group>"; };
 		AD8EFC012B2C2B8400F135CF /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
+		AD8EFC252B30464900F135CF /* Background.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Background.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -106,6 +108,7 @@
 				689617A32AF3B6F800FC5FBE /* HourWeatherView.swift */,
 				689617A52AF3CAB300FC5FBE /* DailyWeatherView.swift */,
 				6896176E2AEEF6C100FC5FBE /* TouristPlacesMapView.swift */,
+				AD8EFC252B30464900F135CF /* Background.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -223,6 +226,7 @@
 				AD8EFC022B2C2B8400F135CF /* Constants.swift in Sources */,
 				689617732AEEF98900FC5FBE /* WeatherMapViewModel.swift in Sources */,
 				689617672AEEF4E600FC5FBE /* WeatherDataModel.swift in Sources */,
+				AD8EFC262B30464900F135CF /* Background.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
