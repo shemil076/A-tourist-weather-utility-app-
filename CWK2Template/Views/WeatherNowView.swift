@@ -11,6 +11,10 @@ struct WeatherNowView: View {
     @EnvironmentObject var weatherMapViewModel: WeatherMapViewModel
     @State private var isLoading = false
     @State private var temporaryCity = ""
+    
+    @Namespace var namespace
+    @State var showWeatherDetails = false
+
     var body: some View {
         ZStack{
             
@@ -19,70 +23,76 @@ struct WeatherNowView: View {
             
             
             VStack{
-                Spacer()
-                RoundedRectangle(cornerRadius: 20)
-                            .stroke(Color.gray, lineWidth: 1)
-                            .frame(height: 40)
-                            .overlay(
-                                HStack {
+                
+                if !showWeatherDetails{
+                    VStack{
+                        Spacer()
+                        RoundedRectangle(cornerRadius: 20)
+                                    .stroke(Color.gray, lineWidth: 1)
+                                    .frame(height: 40)
+                                    .overlay(
+                                        HStack {
 
-                                    TextField("Enter text", text: $temporaryCity)
-                                        .padding(.horizontal, 10)
-                                        .foregroundColor(.white)
+                                            TextField("Enter text", text: $temporaryCity)
+                                                .padding(.horizontal, 10)
+                                                .foregroundColor(.white)
 
-                                    Image(systemName: "magnifyingglass")
-                                        .foregroundColor(.gray)
-                                        .padding(.trailing, 10)
+                                            Image(systemName: "magnifyingglass")
+                                                .foregroundColor(.gray)
+                                                .padding(.trailing, 10)
 
 
-                                }
-                                    .onSubmit {
-
-                                        weatherMapViewModel.city = temporaryCity
-                                        Task {
-                                            do {
-                                                // write code to process user change of location
-                                                
-                                                try await weatherMapViewModel.getCoordinatesForCity(cityName: "\(temporaryCity)")
-                                                
-                //                                print("NEW LOCATION")
-                //                                print("\(newLocation)")
-                //                                print("\(weatherMapViewModel.coordinates?.latitude)")
-                //                                print("\(weatherMapViewModel.coordinates?.longitude)")
-                                                
-                                                _ = try await weatherMapViewModel.loadData(lat: weatherMapViewModel.coordinates?.latitude ?? Constants.defualtLatitude, lon: weatherMapViewModel.coordinates?.longitude ?? Constants.defualtLongitude)
-                                                
-                //                                print("========================================><===========")
-                                                
-                                                
-                                                
-                                            } catch {
-                                                print("Error: \(error)")
-                                                isLoading = false
-                                            }
                                         }
-                                    }
-                            )
-                            .padding()
+                                            .onSubmit {
 
-                Spacer()
-
-                Text("\(weatherMapViewModel.city)")
-                    .font(.custom("", size: 40))
-                    .foregroundColor(.white)
-                    .font(.title)
-                                    .foregroundColor(.white)
+                                                weatherMapViewModel.city = temporaryCity
+                                                Task {
+                                                    do {
+                                                        // write code to process user change of location
+                                                        
+                                                        try await weatherMapViewModel.getCoordinatesForCity(cityName: "\(temporaryCity)")
+                                                        
+                                                        
+                                                        _ = try await weatherMapViewModel.loadData(lat: weatherMapViewModel.coordinates?.latitude ?? Constants.defualtLatitude, lon: weatherMapViewModel.coordinates?.longitude ?? Constants.defualtLongitude)
+                                                                                                            
+                                                        
+                                                    } catch {
+                                                        print("Error: \(error)")
+                                                        isLoading = false
+                                                    }
+                                                }
+                                            }
+                                    )
                                     .padding()
-                                    .background(Blur(style: .systemMaterial).opacity(0.3))
-                                    .cornerRadius(10)
-                                    .padding()
 
-                Spacer()
+                        Spacer()
 
+                        Text("\(weatherMapViewModel.city)")
+                            .font(.custom("", size: 40))
+                            .foregroundColor(.white)
+                            .font(.title)
+                                            .foregroundColor(.white)
+                                            .padding()
+                                            .background(Blur(style: .systemMaterial).opacity(0.3))
+                                            .cornerRadius(10)
+                                            .padding()
+
+                        Spacer()
+                        
+                        let timestamp = TimeInterval(weatherMapViewModel.weatherDataModel?.current.dt ?? 0)
+                                            let formattedDate = DateFormatterUtils.formattedDateTime(from: timestamp)
+                                            Text(formattedDate)
+                                                .padding()
+                                                .font(.title)
+                                                .foregroundColor(.white)
+                                                .shadow(color: .black, radius: 1)
+                        
+                    }
+                }
                 ZStack{
                     Image("temp")
                         .resizable()
-                        .scaledToFit()
+                        .scaledToFit()  
 
                     HStack{
                         Spacer()
@@ -91,16 +101,24 @@ struct WeatherNowView: View {
                             Text("\((Double)(forecast.current.temp), specifier: "%.2f") ºC")
                                 .bold()
                                 .font(.custom("Poppins", size: 60))
-                                .foregroundStyle(.white)
+                                .foregroundStyle(.black)
+                                .background(Blur(style: .systemMaterial).opacity(0.3))
+                                .cornerRadius(10)
                                 .padding(.trailing,10)
+                                
+
                         }
-                        
                     }
 
 
-                }.padding(.bottom, 10)
+                }.padding(.bottom, 20)
 
             }.padding()
+                .onTapGesture {
+                    withAnimation(){
+                        showWeatherDetails.toggle()
+                    }
+                }
             
             
             
@@ -214,6 +232,8 @@ struct WeatherNowView: View {
             .background(.black)
             .ignoresSafeArea()
     }
+    
+    
 }
 struct WeatherNowView_Previews: PreviewProvider {
     static var previews: some View {

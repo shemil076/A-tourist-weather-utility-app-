@@ -25,6 +25,7 @@
 		689617A62AF3CAB300FC5FBE /* DailyWeatherView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 689617A52AF3CAB300FC5FBE /* DailyWeatherView.swift */; };
 		AD8EFC022B2C2B8400F135CF /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD8EFC012B2C2B8400F135CF /* Constants.swift */; };
 		AD8EFC262B30464900F135CF /* Background.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD8EFC252B30464900F135CF /* Background.swift */; };
+		AD8EFC302B32D61B00F135CF /* WeatherCard.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD8EFC2F2B32D61B00F135CF /* WeatherCard.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -47,6 +48,7 @@
 		689617A52AF3CAB300FC5FBE /* DailyWeatherView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DailyWeatherView.swift; sourceTree = "<group>"; };
 		AD8EFC012B2C2B8400F135CF /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
 		AD8EFC252B30464900F135CF /* Background.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Background.swift; sourceTree = "<group>"; };
+		AD8EFC2F2B32D61B00F135CF /* WeatherCard.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeatherCard.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -109,6 +111,7 @@
 				689617A52AF3CAB300FC5FBE /* DailyWeatherView.swift */,
 				6896176E2AEEF6C100FC5FBE /* TouristPlacesMapView.swift */,
 				AD8EFC252B30464900F135CF /* Background.swift */,
+				AD8EFC2F2B32D61B00F135CF /* WeatherCard.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -218,6 +221,7 @@
 				6896176B2AEEF68A00FC5FBE /* WeatherNowView.swift in Sources */,
 				689617A22AF3B37D00FC5FBE /* WindDirHelper.swift in Sources */,
 				689617A42AF3B6F800FC5FBE /* HourWeatherView.swift in Sources */,
+				AD8EFC302B32D61B00F135CF /* WeatherCard.swift in Sources */,
 				689617582AEEF38A00FC5FBE /* ContentView.swift in Sources */,
 				6896176F2AEEF6C100FC5FBE /* TouristPlacesMapView.swift in Sources */,
 				689617A02AF3B19D00FC5FBE /* DateFormatterUtils.swift in Sources */,
