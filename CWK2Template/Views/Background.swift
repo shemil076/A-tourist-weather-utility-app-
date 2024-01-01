@@ -38,11 +38,12 @@ struct Background: View {
             Spacer()
             Image("Main")
                 .scaleEffect(scale)
-                .onAppear {
-                    withAnimation(Animation.easeInOut(duration: 10.0).repeatForever(autoreverses: true)) {
-                        scale = 1.5
-                    }
+                .blur(radius: blurRadius)
+            .onAppear {
+                withAnimation(Animation.easeInOut(duration: 3.0).repeatForever(autoreverses: true)) {
+                    blurRadius = 5
                 }
+            }
             
             VStack{
                 Spacer()
@@ -66,6 +67,8 @@ struct Background: View {
                 Image("Bottom-Glow")
                 
             }.ignoresSafeArea()
+            
+            Spacer()
             
         }
 

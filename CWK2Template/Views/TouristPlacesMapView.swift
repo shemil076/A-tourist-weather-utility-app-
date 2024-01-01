@@ -49,6 +49,8 @@ struct TouristPlacesMapView: View {
         }
         .onAppear {
             // process the loading of tourist places
+            print("printing the places \(weatherMapViewModel)")
+            
         }
     }
 }

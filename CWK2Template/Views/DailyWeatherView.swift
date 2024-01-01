@@ -12,9 +12,29 @@ struct DailyWeatherView: View {
     var body: some View {
 
         let formattedDate = DateFormatterUtils.formattedDateWithWeekdayAndDay(from: TimeInterval(day.dt))
-        Text(formattedDate)
-            .font(.body) // Customize the font if needed
-            .padding()
+        
+        let skyType =  String(day.weather[0].weatherDescription.rawValue)
+        
+        let minTemp = String(day.temp.min)
+        let maxTemp = String(day.temp.max)
+        
+        HStack(alignment: .center, spacing: 5){
+            AsyncImage(url: URL(string: "https://openweathermap.org/img/wn/\(day.weather[0].icon)@2x.png"))
+            
+            VStack(alignment: .center, spacing: 2){
+                Text(skyType)
+                    .font(.body) // Customize the font if needed
+                    .padding()
+                
+                Text(formattedDate)
+                    .font(.body) // Customize the font if needed
+                    .padding()
+            }
+            
+            Text("\((Double)(maxTemp) ?? 0, specifier: "%.2f") ºC / \((Double)(minTemp) ?? 0, specifier: "%.2f") ºC")
+                .font(.body) // Customize the font if needed
+                .padding()
+        }
 
     }
 }
@@ -25,3 +45,4 @@ struct DailyWeatherView_Previews: PreviewProvider {
         DailyWeatherView(day: day[0])
     }
 }
+

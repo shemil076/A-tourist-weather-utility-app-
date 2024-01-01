@@ -19,8 +19,9 @@ struct WeatherNowView: View {
         ZStack{
             
             
-            Background()
-            
+//            Background()
+
+ 
             
             VStack{
                 if !showWeatherDetails{
@@ -54,6 +55,11 @@ struct WeatherNowView: View {
                                             
                                             
                                             _ = try await weatherMapViewModel.loadData(lat: weatherMapViewModel.coordinates?.latitude ?? Constants.defualtLatitude, lon: weatherMapViewModel.coordinates?.longitude ?? Constants.defualtLongitude)
+                                            
+                                            print("===>> Current")
+                                            print("\(String(describing: weatherMapViewModel.weatherDataModel?.current))")
+                                            
+                                            
 
                                         } catch {
                                             print("Error: \(error)")
@@ -249,7 +255,7 @@ struct WeatherNowView: View {
             }// VS1
         }
         .frame(maxWidth: .infinity, maxHeight: .infinity)
-        .background(.black)
+        .background(Color.black)
         .ignoresSafeArea()
     }
     

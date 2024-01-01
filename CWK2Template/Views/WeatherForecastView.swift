@@ -1,3 +1,4 @@
+
 //
 //  WeatherForcastView.swift
 //  CWK2Template
@@ -9,6 +10,7 @@ import SwiftUI
 
 struct WeatherForecastView: View {
     @EnvironmentObject var weatherMapViewModel: WeatherMapViewModel
+    @Namespace var namespace
     var body: some View {
         NavigationView {
             ScrollView{
@@ -20,7 +22,7 @@ struct WeatherForecastView: View {
                             HStack(spacing: 10) {
 
                                 ForEach(hourlyData) { hour in
-                                    HourWeatherView(current: hour)
+                                    HourWeatherView(current: hour,nameSpace: namespace)
                                 }
                             }
                             .padding(.horizontal, 16)
@@ -30,7 +32,7 @@ struct WeatherForecastView: View {
                     Divider()
                         .padding(.horizontal, 16)
                         .padding(.vertical, 8)
-                    VStack { 
+                    VStack {
                         List {
                             ForEach(weatherMapViewModel.weatherDataModel?.daily ?? []) { day in
                                 DailyWeatherView(day: day)
@@ -47,16 +49,22 @@ struct WeatherForecastView: View {
             .toolbar {
                         ToolbarItem(placement: .principal) {
                             HStack {
-                                Image(systemName: "sun.min.fill")
+                                Image(systemName: "sun.min.fill").foregroundColor(.white)
                                 VStack{
                                     Text("Weather Forecast for \(weatherMapViewModel.city)").font(.title3)
                                         .fontWeight(.bold)
-                                    Text("See EPL examples from weeek 4 onwards")
+                                        .foregroundColor(.white)
                                 }
                             }
                         }
                     }
+            .frame(maxWidth: .infinity, maxHeight: .infinity)
+                .background(.black)
+//                .ignoresSafeArea()
         }
+//        .frame(maxWidth: .infinity, maxHeight: .infinity)
+//        .background(.black)
+//        .ignoresSafeArea()
     }
 }
 
