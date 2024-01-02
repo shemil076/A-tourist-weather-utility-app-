@@ -137,9 +137,9 @@ struct BackgroundHelper {
         case .drizzle:
             switch dayOrNight {
             case "d" :
-                return AnyView(DayClearSky())
+                return AnyView(DayDrizzle())
             case "n":
-                return AnyView(NightClearSky())
+                return AnyView(NightDrizzle())
             default:
                 return AnyView(DayRain())
             }

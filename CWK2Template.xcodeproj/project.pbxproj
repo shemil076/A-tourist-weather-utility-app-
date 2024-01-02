@@ -40,6 +40,8 @@
 		AD8EFC322B32DBD200F135CF /* WeatherCard.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD8EFC312B32DBD200F135CF /* WeatherCard.swift */; };
 		AD8EFC342B32DD2400F135CF /* WeatherDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD8EFC332B32DD2400F135CF /* WeatherDetailView.swift */; };
 		ADA100962B43F159003DBA86 /* BackgroundHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = ADA100952B43F159003DBA86 /* BackgroundHelper.swift */; };
+		ADA1009A2B4409AD003DBA86 /* DayDrizzle.swift in Sources */ = {isa = PBXBuildFile; fileRef = ADA100992B4409AD003DBA86 /* DayDrizzle.swift */; };
+		ADA1009C2B440B51003DBA86 /* NightDrizzle.swift in Sources */ = {isa = PBXBuildFile; fileRef = ADA1009B2B440B51003DBA86 /* NightDrizzle.swift */; };
 		ADD5F16A2B42D81D007724A4 /* DayClearSky.swift in Sources */ = {isa = PBXBuildFile; fileRef = ADD5F1692B42D81D007724A4 /* DayClearSky.swift */; };
 		ADD5F16C2B42DDF3007724A4 /* NightClearSky.swift in Sources */ = {isa = PBXBuildFile; fileRef = ADD5F16B2B42DDF3007724A4 /* NightClearSky.swift */; };
 		ADD5F1722B42EA16007724A4 /* DayClouds.swift in Sources */ = {isa = PBXBuildFile; fileRef = ADD5F1712B42EA16007724A4 /* DayClouds.swift */; };
@@ -93,6 +95,8 @@
 		AD8EFC312B32DBD200F135CF /* WeatherCard.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeatherCard.swift; sourceTree = "<group>"; };
 		AD8EFC332B32DD2400F135CF /* WeatherDetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeatherDetailView.swift; sourceTree = "<group>"; };
 		ADA100952B43F159003DBA86 /* BackgroundHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BackgroundHelper.swift; sourceTree = "<group>"; };
+		ADA100992B4409AD003DBA86 /* DayDrizzle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DayDrizzle.swift; sourceTree = "<group>"; };
+		ADA1009B2B440B51003DBA86 /* NightDrizzle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NightDrizzle.swift; sourceTree = "<group>"; };
 		ADD5F1692B42D81D007724A4 /* DayClearSky.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DayClearSky.swift; sourceTree = "<group>"; };
 		ADD5F16B2B42DDF3007724A4 /* NightClearSky.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NightClearSky.swift; sourceTree = "<group>"; };
 		ADD5F1712B42EA16007724A4 /* DayClouds.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DayClouds.swift; sourceTree = "<group>"; };
@@ -238,6 +242,8 @@
 				AD3689D62B43E7EE0050AAC6 /* NightSnow.swift */,
 				AD3689D82B43EA7A0050AAC6 /* DayThunderstorm.swift */,
 				AD3689DA2B43EB580050AAC6 /* NightThunderstorm.swift */,
+				ADA100992B4409AD003DBA86 /* DayDrizzle.swift */,
+				ADA1009B2B440B51003DBA86 /* NightDrizzle.swift */,
 			);
 			path = BackgroundViews;
 			sourceTree = "<group>";
@@ -324,6 +330,7 @@
 				ADD5F16C2B42DDF3007724A4 /* NightClearSky.swift in Sources */,
 				6896179B2AF270B500FC5FBE /* PlacesDataModel.swift in Sources */,
 				6896176B2AEEF68A00FC5FBE /* WeatherNowView.swift in Sources */,
+				ADA1009C2B440B51003DBA86 /* NightDrizzle.swift in Sources */,
 				AD3689D32B43E5170050AAC6 /* NightTornado.swift in Sources */,
 				689617A22AF3B37D00FC5FBE /* WindDirHelper.swift in Sources */,
 				689617A42AF3B6F800FC5FBE /* HourWeatherView.swift in Sources */,
@@ -337,6 +344,7 @@
 				689617692AEEF61200FC5FBE /* NavBar.swift in Sources */,
 				689617562AEEF38A00FC5FBE /* CWK2TemplateApp.swift in Sources */,
 				ADD5F18C2B431CE2007724A4 /* DayDust.swift in Sources */,
+				ADA1009A2B4409AD003DBA86 /* DayDrizzle.swift in Sources */,
 				AD3689C72B43D5BB0050AAC6 /* NightSand.swift in Sources */,
 				ADD5F17E2B430FA1007724A4 /* NightRain.swift in Sources */,
 				AD8EFC022B2C2B8400F135CF /* Constants.swift in Sources */,
