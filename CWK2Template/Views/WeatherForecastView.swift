@@ -22,7 +22,7 @@ struct WeatherForecastView: View {
                             HStack(spacing: 10) {
                                 
                                 ForEach(hourlyData) { hour in
-                                    HourWeatherView(current: hour,nameSpace: namespace)
+                                    HourWeatherView(current: hour)
                                 }
                             }
                             .padding(.horizontal, 16)
@@ -61,7 +61,7 @@ struct WeatherForecastView: View {
                 }
             }
             .frame(maxWidth: .infinity, maxHeight: .infinity)
-            .background(DayClearSky())
+            .background(BackgroundHelper.setBackground(weatherMapViewModel: weatherMapViewModel))
             //                            .ignoresSafeArea()
         }
         //        .frame(maxWidth: .infinity, maxHeight: .infinity)

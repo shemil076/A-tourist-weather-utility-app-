@@ -255,7 +255,9 @@ struct WeatherNowView: View {
             }// VS1
         }
         .frame(maxWidth: .infinity, maxHeight: .infinity)
-        .background(DayClearSky())
+        .background(
+            BackgroundHelper.setBackground(weatherMapViewModel: weatherMapViewModel)
+        )
         .ignoresSafeArea()
     }
     

@@ -9,7 +9,6 @@ import SwiftUI
 
 struct HourWeatherView: View {
     var current: Current
-    var nameSpace : Namespace.ID
 
     var body: some View {
         let formattedDate = DateFormatterUtils.formattedDateWithWeekdayAndDay(from: TimeInterval(current.dt))
