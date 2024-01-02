@@ -13,58 +13,60 @@ struct WeatherForecastView: View {
     @Namespace var namespace
     var body: some View {
         NavigationView {
-            ScrollView{
+            VStack{
                 VStack(alignment: .leading, spacing: 16) {
                     if let hourlyData = weatherMapViewModel.weatherDataModel?.hourly {
-
+                        
                         ScrollView(.horizontal, showsIndicators: false) {
-
+                            
                             HStack(spacing: 10) {
-
+                                
                                 ForEach(hourlyData) { hour in
                                     HourWeatherView(current: hour,nameSpace: namespace)
                                 }
                             }
                             .padding(.horizontal, 16)
+                            .padding(.top, 20)
                         }
                         .frame(height: 180)
                     }
                     Divider()
                         .padding(.horizontal, 16)
                         .padding(.vertical, 8)
-                    VStack {
+                        .padding(.top,20)
+                    
+                    ScrollView {
                         List {
                             ForEach(weatherMapViewModel.weatherDataModel?.daily ?? []) { day in
                                 DailyWeatherView(day: day)
                             }
                         }
-                        .listStyle(GroupedListStyle())
-                        .frame(height: 500)
-                        // .opacity(0.2)
-                    }
+                        .frame(height: 700)
+                    }        .padding(.top,30)
+                    
                 }
-                .padding(.horizontal, 16)
+                .padding(16)
             }
             .navigationBarTitleDisplayMode(.inline)
             .toolbar {
-                        ToolbarItem(placement: .principal) {
-                            HStack {
-                                Image(systemName: "sun.min.fill").foregroundColor(.white)
-                                VStack{
-                                    Text("Weather Forecast for \(weatherMapViewModel.city)").font(.title3)
-                                        .fontWeight(.bold)
-                                        .foregroundColor(.white)
-                                }
-                            }
+                ToolbarItem(placement: .principal) {
+                    HStack {
+                        Image(systemName: "sun.min.fill").foregroundColor(.white)
+                        VStack{
+                            Text("Weather Forecast for \(weatherMapViewModel.city)").font(.title3)
+                                .fontWeight(.bold)
+                                .foregroundColor(.white)
                         }
                     }
+                }
+            }
             .frame(maxWidth: .infinity, maxHeight: .infinity)
-                .background(.black)
-//                .ignoresSafeArea()
+            .background(DayClearSky())
+            //                            .ignoresSafeArea()
         }
-//        .frame(maxWidth: .infinity, maxHeight: .infinity)
-//        .background(.black)
-//        .ignoresSafeArea()
+        //        .frame(maxWidth: .infinity, maxHeight: .infinity)
+        //
+        //        .ignoresSafeArea()
     }
 }
 

@@ -25,16 +25,25 @@ struct DailyWeatherView: View {
                 Text(skyType)
                     .font(.body) // Customize the font if needed
                     .padding()
+                    .foregroundColor(.black)
                 
                 Text(formattedDate)
                     .font(.body) // Customize the font if needed
                     .padding()
+                    .foregroundColor(.black)
+
             }
             
             Text("\((Double)(maxTemp) ?? 0, specifier: "%.2f") ºC / \((Double)(minTemp) ?? 0, specifier: "%.2f") ºC")
                 .font(.body) // Customize the font if needed
                 .padding()
+                .foregroundColor(.black)
+
         }
+        .padding(20)
+        .foregroundColor(.black)
+        .background(Blur(style: .systemMaterial).opacity(0.3))
+        .cornerRadius(10)
 
     }
 }

@@ -15,7 +15,7 @@ struct HourWeatherView: View {
         let formattedDate = DateFormatterUtils.formattedDateWithWeekdayAndDay(from: TimeInterval(current.dt))
         let formattedTime = DateFormatterUtils.formattedDate12Hour(from: TimeInterval(current.dt))
         let temp = String(current.temp)
-        let skyType =  String(current.weather[0].weatherDescription.rawValue)
+        let skyType =  String(current.weather[0].weatherDescription.rawValue.capitalized)
         
         VStack(alignment: .center, spacing: 5) {
             Text(formattedDate)
@@ -65,6 +65,7 @@ struct HourWeatherView: View {
 //            Rectangle()
 //                .fill(.ultraThinMaterial)
 //                .mask(RoundedRectangle(cornerRadius: 30, style: .continuous)))
+        
         
     }
 }

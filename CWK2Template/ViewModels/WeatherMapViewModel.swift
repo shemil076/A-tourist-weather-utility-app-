@@ -33,16 +33,16 @@ class WeatherMapViewModel: ObservableObject {
 // MARK:  complete the code to get user coordinates for user entered place
 // and specify the map region
         
-        let locations: [Location] = loadLocationsFromJSONFile() ?? []
-        
-        
-        if let location = locations.first(where: { $0.cityName == "\(cityName)" }) {
-            
-            print("=======>> calling getCoordinatesForCity() ")
-            print("Latitude: \(location.coordinates.latitude), Longitude: \(location.coordinates.longitude)")
-                } else {
-                    print("City not found")
-                }
+//        let locations: [Location] = loadLocationsFromJSONFile() ?? []
+//        
+//        
+//        if let location = locations.first(where: { $0.cityName == "\(cityName)" }) {
+//            
+//            print("=======>> calling getCoordinatesForCity() ")
+//            print("Latitude: \(location.coordinates.latitude), Longitude: \(location.coordinates.longitude)")
+//                } else {
+//                    print("City not found")
+//                }
         let geocoder = CLGeocoder()
         if let placemarks = try? await geocoder.geocodeAddressString(city),
            let location = placemarks.first?.location?.coordinate {
