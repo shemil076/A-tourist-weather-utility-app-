@@ -32,16 +32,16 @@ struct WeatherCard: View {
 
         .foregroundStyle(.white)
         .background(
-            Image("temp")
-                .resizable()
-                .aspectRatio(contentMode: .fill)
-                .matchedGeometryEffect(id: "background", in: nameSpace)
+            Rectangle()
+                .fill(.ultraThinMaterial)
+                .mask(RoundedRectangle(cornerRadius: 30, style: .continuous).opacity(0.5))
+                .matchedGeometryEffect(id: "blur", in: nameSpace)
         )
         .mask {
             RoundedRectangle(cornerRadius:30, style: .continuous)
                 .matchedGeometryEffect(id: "mask", in: nameSpace)
         }
-        .padding(20)
+        .padding(.bottom,20)
     }
 }
 

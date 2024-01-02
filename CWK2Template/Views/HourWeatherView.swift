@@ -21,14 +21,12 @@ struct HourWeatherView: View {
                 .font(.body)
 
                 .padding(.horizontal)
-//                .background(Color.white)
                 .foregroundColor(.white)
             
             Text(formattedTime)
                 .font(.body)
 
                 .padding(.horizontal)
-//                .background(Color.white)
                 .foregroundColor(.white)
 
             
@@ -37,33 +35,24 @@ struct HourWeatherView: View {
             Text("\((Double)(temp) ?? 0, specifier: "%.2f") ºC")
                 .font(.body)
                 .padding(.horizontal)
-//                .background(Color.white)
                 .foregroundColor(.white)
             
             Text(skyType)
                 .font(.body)
-
                 .padding(.horizontal)
-//                .background(Color.white)
                 .foregroundColor(.white)
 
-//            Text("Add style & other elements")
-//                .frame(width: 125)
-//                .font(.body)
-//                .multilineTextAlignment(.leading)
-//                .lineLimit(nil) 
-//                .padding(.horizontal)
-//                .background(Color.white)
-//                .foregroundColor(.black)
         }
         .padding(.top,30)
-        .foregroundColor(.white)
-        .background(Blur(style: .systemMaterial).opacity(0.3))
-        .cornerRadius(10)
-//        background(
-//            Rectangle()
-//                .fill(.ultraThinMaterial)
-//                .mask(RoundedRectangle(cornerRadius: 30, style: .continuous)))
+        .padding(.horizontal,10)
+        .background(
+            Rectangle()
+                   .fill(.ultraThinMaterial)
+                   .opacity(0.45)
+                   .frame(width: UIScreen.main.bounds.width / 2.5 , height: UIScreen.main.bounds.height / 3.5)
+                   .cornerRadius(10)
+                   
+        )
         
         
     }

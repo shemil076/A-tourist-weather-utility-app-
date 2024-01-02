@@ -17,12 +17,6 @@ struct WeatherNowView: View {
     
     var body: some View {
         ZStack{
-            
-            
-//            Background()
-
- 
-            
             VStack{
                 if !showWeatherDetails{
                     RoundedRectangle(cornerRadius: 20)
@@ -84,11 +78,19 @@ struct WeatherNowView: View {
                                 .font(.custom("", size: 40))
                                 .foregroundColor(.white)
                                 .font(.title)
-                                .foregroundColor(.white)
-                                .padding()
-                                .background(Blur(style: .systemMaterial).opacity(0.3))
-                                .cornerRadius(10)
-                                .padding()
+                                .background(
+                                    Rectangle()
+                                           .fill(.ultraThinMaterial)
+                                           .opacity(0.5)
+                                           .frame(width: UIScreen.main.bounds.width / 2 , height: UIScreen.main.bounds.height / 9)
+                                           .cornerRadius(20)
+                                )
+                        
+//                                .foregroundColor(.white)
+//                                .padding()
+//                                .background(Blur(style: .systemMaterial).opacity(0.3))
+//                                .cornerRadius(10)
+//                                .padding()
                             
                             Spacer()
                             
@@ -257,6 +259,7 @@ struct WeatherNowView: View {
         .frame(maxWidth: .infinity, maxHeight: .infinity)
         .background(
             BackgroundHelper.setBackground(weatherMapViewModel: weatherMapViewModel)
+//            DayClearSky()
         )
         .ignoresSafeArea()
     }
