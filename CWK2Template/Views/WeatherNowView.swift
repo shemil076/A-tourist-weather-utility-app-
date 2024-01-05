@@ -86,12 +86,6 @@ struct WeatherNowView: View {
                                         .cornerRadius(20)
                                 )
                             
-                            //                                .foregroundColor(.white)
-                            //                                .padding()
-                            //                                .background(Blur(style: .systemMaterial).opacity(0.3))
-                            //                                .cornerRadius(10)
-                            //                                .padding()
-                            
                             Spacer()
                             
                             let timestamp = TimeInterval(weatherMapViewModel.weatherDataModel?.current.dt ?? 0)
@@ -101,9 +95,7 @@ struct WeatherNowView: View {
                                 .font(.title)
                                 .foregroundColor(.white)
                                 .shadow(color: .black, radius: 1)
-                            
-                            
-                            
+
                             
                         }
                     }
@@ -114,32 +106,6 @@ struct WeatherNowView: View {
                         WeatherDetailView(nameSpace: namespace, show: $showWeatherDetails)
                     }
                     
-                    
-                    
-                    //                ZStack{
-                    //                    Image("temp")
-                    //                        .resizable()
-                    //                        .scaledToFit()
-                    //
-                    //                    HStack{
-                    //                        Spacer()
-                    //
-                    //                        if let forecast = weatherMapViewModel.weatherDataModel {
-                    //                            Text("\((Double)(forecast.current.temp), specifier: "%.2f") ºC")
-                    //                                .bold()
-                    //                                .font(.custom("Poppins", size: 60))
-                    //                                .foregroundStyle(.black)
-                    //                                .background(Blur(style: .systemMaterial).opacity(0.3))
-                    //                                .cornerRadius(10)
-                    //                                .padding(.trailing,10)
-                    //
-                    //
-                    //                        }
-                    //                    }
-                    //
-                    //
-                    //                }.padding(.bottom, 20)
-                    
                 }.padding()
                     .onTapGesture {
                         withAnimation(){
@@ -148,118 +114,10 @@ struct WeatherNowView: View {
                     }
                 
             }.padding(10)
-            
-            
-            VStack{
-                HStack{
-                    //                    Text("Change Location")
-                    
-                    //                    TextField("Enter New Location", text: $temporaryCity)
-                    //                        .onSubmit {
-                    //
-                    //                            weatherMapViewModel.city = temporaryCity
-                    //                            Task {
-                    //                                do {
-                    //                                    // write code to process user change of location
-                    //
-                    //                                    try await weatherMapViewModel.getCoordinatesForCity(cityName: "\(temporaryCity)")
-                    //
-                    //    //                                print("NEW LOCATION")
-                    //    //                                print("\(newLocation)")
-                    //    //                                print("\(weatherMapViewModel.coordinates?.latitude)")
-                    //    //                                print("\(weatherMapViewModel.coordinates?.longitude)")
-                    //
-                    //                                    _ = try await weatherMapViewModel.loadData(lat: weatherMapViewModel.coordinates?.latitude ?? Constants.defualtLatitude, lon: weatherMapViewModel.coordinates?.longitude ?? Constants.defualtLongitude)
-                    //
-                    //    //                                print("========================================><===========")
-                    //
-                    //
-                    //
-                    //                                } catch {
-                    //                                    print("Error: \(error)")
-                    //                                    isLoading = false
-                    //                                }
-                    //                            }
-                    //                        }
-                }
-                .bold()
-                .font(.system(size: 20))
-                .padding(10)
-                .shadow(color: .blue, radius: 10)
-                .cornerRadius(10)
-                .fixedSize()
-                .font(.custom("Arial", size: 26))
-                .textFieldStyle(RoundedBorderTextFieldStyle())
-                .cornerRadius(15)
-                //                VStack{
-                //                    HStack{
-                ////                        Text("Current Location: \(weatherMapViewModel.city)")
-                //                    }
-                //                    .bold()
-                //                    .font(.system(size: 20))
-                //                    .padding(10)
-                //                    .shadow(color: .blue, radius: 10)
-                //                    .cornerRadius(10)
-                //                    .fixedSize()
-                //                    .font(.custom("Arial", size: 26))
-                //                    .textFieldStyle(RoundedBorderTextFieldStyle())
-                //                    .cornerRadius(15)
-                //                    let timestamp = TimeInterval(weatherMapViewModel.weatherDataModel?.current.dt ?? 0)
-                //                    let formattedDate = DateFormatterUtils.formattedDateTime(from: timestamp)
-                //                    Text(formattedDate)
-                //                        .padding()
-                //                        .font(.title)
-                //                        .foregroundColor(.black)
-                //                        .shadow(color: .black, radius: 1)
-                //
-                //                    VStack{
-                //
-                //                        // Weather Temperature Value
-                //                        if let forecast = weatherMapViewModel.weatherDataModel {
-                //
-                //                            let des =  String(forecast.current.weather[0].weatherDescription.rawValue)
-                //
-                //    //                        Image(forecast.current.weather[0].icon)
-                //
-                //                            Label {
-                //                                Text(des)
-                //                            } icon: {
-                //                               AsyncImage(url: URL(string: "https://openweathermap.org/img/wn/\(forecast.current.weather[0].icon)@2x.png"))
-                //                            }
-                //
-                //
-                //
-                //                            Text("Temp: \((Double)(forecast.current.temp), specifier: "%.2f") ºC")
-                //                                .font(.system(size: 25, weight: .medium))
-                //                                .foregroundColor(.white)
-                //
-                //                            Text("Humidity: \((Double)(forecast.current.humidity), specifier: "%.2f") %")
-                //                                .font(.system(size: 25, weight: .medium))
-                //                                .foregroundColor(.white)
-                //
-                //                            Text("Pressure: \((Double)(forecast.current.pressure), specifier: "%.2f") hPa")
-                //                                .font(.system(size: 25, weight: .medium))
-                //                                .foregroundColor(.white)
-                //
-                //                            Text("Wind Speed: \((Double)(forecast.current.windSpeed), specifier: "%.2f") mph")
-                //                                .font(.system(size: 25, weight: .medium))
-                //                                .foregroundColor(.white)
-                //                        } else {
-                //                            Text("Temp: N/A")
-                //                                .font(.system(size: 25, weight: .medium))
-                //                                .foregroundColor(.white)
-                //                        }
-                //
-                //                    }
-                //                    .background(Blur(style: .systemMaterial).opacity(5))
-                //
-                //                }//VS2
-            }// VS1
         }
         .frame(maxWidth: .infinity, maxHeight: .infinity)
         .background(
             BackgroundHelper.setBackground(weatherMapViewModel: weatherMapViewModel)
-            //            DayClearSky()
         )
         .ignoresSafeArea()
     }
