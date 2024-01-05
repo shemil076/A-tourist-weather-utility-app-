@@ -54,7 +54,7 @@ struct WeatherNowView: View {
                                             print("\(String(describing: weatherMapViewModel.weatherDataModel?.current))")
                                             
                                             
-
+                                            
                                         } catch {
                                             print("Error: \(error)")
                                             isLoading = false
@@ -80,17 +80,17 @@ struct WeatherNowView: View {
                                 .font(.title)
                                 .background(
                                     Rectangle()
-                                           .fill(.ultraThinMaterial)
-                                           .opacity(0.5)
-                                           .frame(width: UIScreen.main.bounds.width / 2 , height: UIScreen.main.bounds.height / 9)
-                                           .cornerRadius(20)
+                                        .fill(.ultraThinMaterial)
+                                        .opacity(0.5)
+                                        .frame(width: UIScreen.main.bounds.width / 2 , height: UIScreen.main.bounds.height / 9)
+                                        .cornerRadius(20)
                                 )
-                        
-//                                .foregroundColor(.white)
-//                                .padding()
-//                                .background(Blur(style: .systemMaterial).opacity(0.3))
-//                                .cornerRadius(10)
-//                                .padding()
+                            
+                            //                                .foregroundColor(.white)
+                            //                                .padding()
+                            //                                .background(Blur(style: .systemMaterial).opacity(0.3))
+                            //                                .cornerRadius(10)
+                            //                                .padding()
                             
                             Spacer()
                             
@@ -107,7 +107,7 @@ struct WeatherNowView: View {
                             
                         }
                     }
-                                        
+                    
                     if !showWeatherDetails {
                         WeatherCard(nameSpace: namespace, show: $showWeatherDetails)
                     }else{
@@ -259,7 +259,7 @@ struct WeatherNowView: View {
         .frame(maxWidth: .infinity, maxHeight: .infinity)
         .background(
             BackgroundHelper.setBackground(weatherMapViewModel: weatherMapViewModel)
-//            DayClearSky()
+            //            DayClearSky()
         )
         .ignoresSafeArea()
     }

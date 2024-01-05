@@ -9,59 +9,73 @@ import SwiftUI
 
 struct HourWeatherView: View {
     var current: Current
-
+    
     var body: some View {
         let formattedDate = DateFormatterUtils.formattedDateWithWeekdayAndDay(from: TimeInterval(current.dt))
         let formattedTime = DateFormatterUtils.formattedDate12Hour(from: TimeInterval(current.dt))
         let temp = String(current.temp)
-        let skyType =  String(current.weather[0].weatherDescription.rawValue.capitalized)
+        let weatherDescription =  String(current.weather[0].weatherDescription.rawValue.capitalized)
+        var words: [String] {
+            weatherDescription.components(separatedBy: " ")
+        }
         
-        VStack(alignment: .center, spacing: 5) {
+        VStack(alignment: .center) {
             Text(formattedDate)
                 .font(.body)
-
+            
                 .padding(.horizontal)
                 .foregroundColor(.white)
             
             Text(formattedTime)
                 .font(.body)
-
+            
                 .padding(.horizontal)
                 .foregroundColor(.white)
-
+            
             
             AsyncImage(url: URL(string: "https://openweathermap.org/img/wn/\(current.weather[0].icon)@2x.png"))
+            
+                .scaledToFit()
+                .frame(width: UIScreen.main.bounds.width / 9 ,height: UIScreen.main.bounds.height / 10)
+            
+            
             
             Text("\((Double)(temp) ?? 0, specifier: "%.2f") ºC")
                 .font(.body)
                 .padding(.horizontal)
                 .foregroundColor(.white)
             
-            Text(skyType)
-                .font(.body)
-                .padding(.horizontal)
-                .foregroundColor(.white)
-
+            VStack{
+                ForEach(words, id: \.self){ word in
+                    Text(word)
+                        .font(.body)
+                        .foregroundColor(.white)
+                    
+                }
+            }.padding()
+            
         }
-        .padding(.top,30)
-        .padding(.horizontal,10)
+        .padding(.horizontal, 20)
         .background(
             Rectangle()
-                   .fill(.ultraThinMaterial)
-                   .opacity(0.45)
-                   .frame(width: UIScreen.main.bounds.width / 2.5 , height: UIScreen.main.bounds.height / 3.5)
-                   .cornerRadius(10)
-                   
+                .fill(.ultraThinMaterial)
+                .background(.ultraThinMaterial)
+                .overlay(Color.black.opacity(0.4))
+                .opacity(0.4)
+                .frame(width: UIScreen.main.bounds.width / 2.5, height: UIScreen.main.bounds.height / 2.5)
+                .cornerRadius(20)
+            
         )
         
         
     }
 }
 
-//struct HourWeatherView_Previews: PreviewProvider {
-//    static var previews: some View {
-//        HourWeatherView()
-//    }
-//}
+struct HourWeatherView_Previews: PreviewProvider {
+    static var current = WeatherMapViewModel().weatherDataModel!.current
+    static var previews: some View {
+        HourWeatherView(current: current)
+    }
+}
 
 

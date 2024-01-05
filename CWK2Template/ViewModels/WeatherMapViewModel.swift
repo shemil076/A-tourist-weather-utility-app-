@@ -33,16 +33,7 @@ class WeatherMapViewModel: ObservableObject {
 // MARK:  complete the code to get user coordinates for user entered place
 // and specify the map region
         
-//        let locations: [Location] = loadLocationsFromJSONFile() ?? []
-//        
-//        
-//        if let location = locations.first(where: { $0.cityName == "\(cityName)" }) {
-//            
-//            print("=======>> calling getCoordinatesForCity() ")
-//            print("Latitude: \(location.coordinates.latitude), Longitude: \(location.coordinates.longitude)")
-//                } else {
-//                    print("City not found")
-//                }
+
         let geocoder = CLGeocoder()
         if let placemarks = try? await geocoder.geocodeAddressString(city),
            let location = placemarks.first?.location?.coordinate {
@@ -60,6 +51,7 @@ class WeatherMapViewModel: ObservableObject {
     func loadData(lat: Double, lon: Double) async throws -> WeatherDataModel {
 // MARK:  add your appid in the url below:
         if let url = URL(string: "https://api.openweathermap.org/data/3.0/onecall?lat=\(lat)&lon=\(lon)&units=metric&appid=\(Constants.appId)") {
+//        https://api.openweathermap.org/data/3.0/onecall?lat=\(lat)&lon=\(lon)&units=metric&appid={id}"
             let session = URLSession(configuration: .default)
 
             do {
@@ -181,3 +173,13 @@ class WeatherMapViewModel: ObservableObject {
 }
 
 
+//        let locations: [Location] = loadLocationsFromJSONFile() ?? []
+//
+//
+//        if let location = locations.first(where: { $0.cityName == "\(cityName)" }) {
+//
+//            print("=======>> calling getCoordinatesForCity() ")
+//            print("Latitude: \(location.coordinates.latitude), Longitude: \(location.coordinates.longitude)")
+//                } else {
+//                    print("City not found")
+//                }

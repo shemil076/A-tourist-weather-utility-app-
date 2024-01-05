@@ -10,44 +10,55 @@ import SwiftUI
 
 struct WeatherForecastView: View {
     @EnvironmentObject var weatherMapViewModel: WeatherMapViewModel
-    @Namespace var namespace
     var body: some View {
         NavigationView {
-            VStack{
+            ScrollView{
                 VStack(alignment: .leading, spacing: 16) {
                     if let hourlyData = weatherMapViewModel.weatherDataModel?.hourly {
                         
                         ScrollView(.horizontal, showsIndicators: false) {
                             
-                            HStack(spacing: 10) {
+                            HStack(spacing: 20) {
                                 
                                 ForEach(hourlyData) { hour in
                                     HourWeatherView(current: hour)
+                                   
                                 }
                             }
                             .padding(.horizontal, 16)
                             .padding(.top, 20)
                         }
-                        .frame(height: 180)
+                        .frame(height: 200)
                     }
-                    Divider()
+                                        Divider()
+                    Spacer()
                         .padding(.horizontal, 16)
                         .padding(.vertical, 8)
                         .padding(.top,20)
                     
                     ScrollView {
-                        List {
+
+                        VStack{
                             ForEach(weatherMapViewModel.weatherDataModel?.daily ?? []) { day in
-                                DailyWeatherView(day: day)
+                                    DailyWeatherView(day: day)
                             }
-                        }
-                        .frame(height: 700)
-                    }        .padding(.top,30)
+                        }.padding(20)
+                           
+                    } .frame(width: UIScreen.main.bounds.width / 1.04 , height: UIScreen.main.bounds.height/3)
+                        .background(
+                        Rectangle()
+                               .fill(.ultraThinMaterial)
+                               .opacity(0.45)
+                               .frame(width: UIScreen.main.bounds.width / 1.04 , height: UIScreen.main.bounds.height/3)
+                               .cornerRadius(10)
+
+                              
+                    )
                     
                 }
                 .padding(16)
             }
-            .navigationBarTitleDisplayMode(.inline)
+            .navigationBarTitleDisplayMode(.large)
             .toolbar {
                 ToolbarItem(placement: .principal) {
                     HStack {
@@ -61,7 +72,11 @@ struct WeatherForecastView: View {
                 }
             }
             .frame(maxWidth: .infinity, maxHeight: .infinity)
-            .background(BackgroundHelper.setBackground(weatherMapViewModel: weatherMapViewModel))
+            .background(
+                BackgroundHelper.setBackground(weatherMapViewModel: weatherMapViewModel)
+//                NightAsh()
+            )
+            
             //                            .ignoresSafeArea()
         }
         //        .frame(maxWidth: .infinity, maxHeight: .infinity)

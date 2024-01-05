@@ -18,10 +18,11 @@ struct DailyWeatherView: View {
         let minTemp = String(day.temp.min)
         let maxTemp = String(day.temp.max)
         
-        HStack(alignment: .center, spacing: 5){
+        HStack(alignment: .center, spacing:2){
             AsyncImage(url: URL(string: "https://openweathermap.org/img/wn/\(day.weather[0].icon)@2x.png"))
+                .frame(width: UIScreen.main.bounds.width / 5 ,height: UIScreen.main.bounds.height / 6)
             
-            VStack(alignment: .center, spacing: 2){
+            VStack(alignment: .center, spacing: 1){
                 Text(skyType)
                     .font(.body) // Customize the font if needed
                     .padding()
@@ -40,10 +41,14 @@ struct DailyWeatherView: View {
                 .foregroundColor(.black)
 
         }
-        .padding(20)
-        .foregroundColor(.black)
-        .background(Blur(style: .systemMaterial).opacity(0.3))
-        .cornerRadius(10)
+        .padding(10)
+        .background(
+            Rectangle()
+                   .fill(.ultraThinMaterial)
+                   .opacity(0.45)
+                   .frame(width: UIScreen.main.bounds.width / 1 , height: UIScreen.main.bounds.height / 5)
+                   .cornerRadius(10)
+        )
 
     }
 }
@@ -54,4 +59,5 @@ struct DailyWeatherView_Previews: PreviewProvider {
         DailyWeatherView(day: day[0])
     }
 }
+
 
