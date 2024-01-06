@@ -73,5 +73,24 @@ class DateFormatterUtils {
             dateFormatter.dateFormat = "d MMM yyyy 'at' ha"
             return dateFormatter.string(from: Date(timeIntervalSince1970: timestamp))
         }
+    
+    
+    
+    static func getLocalTime(from unixTime: TimeInterval, timezoneIdentifier: String, onlyDate: Bool) -> String {
+        let date = Date(timeIntervalSince1970: unixTime)
+
+        let dateFormatter = DateFormatter()
+        dateFormatter.timeZone = TimeZone(identifier: timezoneIdentifier)
+//        dateFormatter.dateFormat = "yyyy-MM-dd HH:mm:ss"
+        
+        if !onlyDate {
+            dateFormatter.dateFormat = "h:mm a"
+        }else{
+            dateFormatter.dateFormat = "dd/MM/yyyy"
+        }
+
+        let localDate = dateFormatter.string(from: date)
+        return localDate
+    }
         
 }

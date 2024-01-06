@@ -37,6 +37,7 @@ struct HourWeatherView: View {
             
                 .scaledToFit()
                 .frame(width: UIScreen.main.bounds.width / 9 ,height: UIScreen.main.bounds.height / 10)
+                .shadow(color: Color.white, radius: 5, x: 0, y: 0)
             
             
             

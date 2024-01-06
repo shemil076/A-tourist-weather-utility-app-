@@ -22,7 +22,7 @@ struct WeatherForecastView: View {
                                 
                                 ForEach(hourlyData) { hour in
                                     HourWeatherView(current: hour)
-                                   
+                                    
                                 }
                             }
                             .padding(.horizontal, 16)
@@ -30,30 +30,33 @@ struct WeatherForecastView: View {
                         }
                         .frame(height: 200)
                     }
-                                        Divider()
+                    Spacer()
+                    Divider()
                     Spacer()
                         .padding(.horizontal, 16)
                         .padding(.vertical, 8)
                         .padding(.top,20)
                     
                     ScrollView {
-
+                        
                         VStack{
                             ForEach(weatherMapViewModel.weatherDataModel?.daily ?? []) { day in
-                                    DailyWeatherView(day: day)
+                                DailyWeatherView(day: day)
                             }
                         }.padding(20)
-                           
+                            .padding(.vertical, 16)
+                            .padding(.bottom, 30)
+                        
                     } .frame(width: UIScreen.main.bounds.width / 1.04 , height: UIScreen.main.bounds.height/3)
                         .background(
-                        Rectangle()
-                               .fill(.ultraThinMaterial)
-                               .opacity(0.45)
-                               .frame(width: UIScreen.main.bounds.width / 1.04 , height: UIScreen.main.bounds.height/3)
-                               .cornerRadius(10)
-
-                              
-                    )
+                            Rectangle()
+                                .fill(.ultraThinMaterial)
+                                .opacity(0.45)
+                                .frame(width: UIScreen.main.bounds.width / 1.04 , height: UIScreen.main.bounds.height/3)
+                                .cornerRadius(10)
+                            
+                            
+                        )
                     
                 }
                 .padding(16)
@@ -74,7 +77,7 @@ struct WeatherForecastView: View {
             .frame(maxWidth: .infinity, maxHeight: .infinity)
             .background(
                 BackgroundHelper.setBackground(weatherMapViewModel: weatherMapViewModel)
-//                NightAsh()
+                //                NightAsh()
             )
             
             //                            .ignoresSafeArea()

@@ -51,7 +51,6 @@ class WeatherMapViewModel: ObservableObject {
     func loadData(lat: Double, lon: Double) async throws -> WeatherDataModel {
 // MARK:  add your appid in the url below:
         if let url = URL(string: "https://api.openweathermap.org/data/3.0/onecall?lat=\(lat)&lon=\(lon)&units=metric&appid=\(Constants.appId)") {
-//        https://api.openweathermap.org/data/3.0/onecall?lat=\(lat)&lon=\(lon)&units=metric&appid={id}"
             let session = URLSession(configuration: .default)
 
             do {

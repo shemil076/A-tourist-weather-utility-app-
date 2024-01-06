@@ -30,6 +30,7 @@ struct WeatherNowView: View {
                                     .foregroundColor(.white)
                                     .background(.white.opacity(0.12))
                                     .clipShape(.rect(cornerRadius: 8, style: .continuous))
+                                    .keyboardType(.alphabet)
                                 
                                 
                                 Image(systemName: "magnifyingglass")
@@ -47,8 +48,18 @@ struct WeatherNowView: View {
                                             
                                             try await weatherMapViewModel.getCoordinatesForCity(cityName: "\(temporaryCity)")
                                             
+                                            print("current city, \(weatherMapViewModel.city.lowercased())")
                                             
-                                            _ = try await weatherMapViewModel.loadData(lat: weatherMapViewModel.coordinates?.latitude ?? Constants.defualtLatitude, lon: weatherMapViewModel.coordinates?.longitude ?? Constants.defualtLongitude)
+                                            if weatherMapViewModel.city.lowercased() == "new york" {
+                                                _ = try await weatherMapViewModel.loadData(lat: 40.6892, lon:  -74.0445)
+                                            }else {
+                                                _ = try await weatherMapViewModel.loadData(lat: weatherMapViewModel.coordinates?.latitude ?? Constants.defualtLatitude, lon: weatherMapViewModel.coordinates?.longitude ?? Constants.defualtLongitude)
+                                            }
+                                            
+                                            
+                                            
+                                            print("current coordinates ===> \(weatherMapViewModel.coordinates?.latitude)")
+                                            print("\(weatherMapViewModel.coordinates?.longitude)")
                                             
                                             print("===>> Current")
                                             print("\(String(describing: weatherMapViewModel.weatherDataModel?.current))")
@@ -56,7 +67,7 @@ struct WeatherNowView: View {
                                             
                                             
                                         } catch {
-                                            print("Error: \(error)")
+                                            print("Error ======>> : \(error)")
                                             isLoading = false
                                         }
                                         
@@ -69,10 +80,7 @@ struct WeatherNowView: View {
                     
                     if !showWeatherDetails{
                         VStack{
-                            Spacer()
                             
-                            
-                            Spacer()
                             
                             Text("\(weatherMapViewModel.city)")
                                 .font(.custom("", size: 40))
@@ -82,26 +90,39 @@ struct WeatherNowView: View {
                                     Rectangle()
                                         .fill(.ultraThinMaterial)
                                         .opacity(0.5)
-                                        .frame(width: UIScreen.main.bounds.width / 2 , height: UIScreen.main.bounds.height / 9)
+                                        .frame(width: UIScreen.main.bounds.width / 1.5 , height: UIScreen.main.bounds.height / 9)
                                         .cornerRadius(20)
                                 )
+                                .padding(20)
                             
-                            Spacer()
+                            //                                                        let timestamp = TimeInterval(weatherMapViewModel.weatherDataModel?.current.dt ?? 0)
+                            //                                                        let formattedDate = DateFormatterUtils.formattedDateTime(from: timestamp)
+                            //
+                            //
+                            //
+                            //                                                        Text(formattedDate)
+                            //                                                            .padding()
+                            //                                                            .font(.title)
+                            //                                                            .foregroundColor(.white)
+                            //                                                            .shadow(color: .black, radius: 1)
                             
-                            let timestamp = TimeInterval(weatherMapViewModel.weatherDataModel?.current.dt ?? 0)
-                            let formattedDate = DateFormatterUtils.formattedDateTime(from: timestamp)
-                            Text(formattedDate)
-                                .padding()
-                                .font(.title)
-                                .foregroundColor(.white)
-                                .shadow(color: .black, radius: 1)
-
+                            if let unixTime = weatherMapViewModel.weatherDataModel?.current.dt, let currentTimeZone = weatherMapViewModel.weatherDataModel?.timezone{
+                                let currentTime = DateFormatterUtils.getLocalTime(from: TimeInterval(unixTime), timezoneIdentifier: currentTimeZone, onlyDate: false)
+                                Text(currentTime)
+                                    .padding()
+                                    .font(.title).bold()
+                                    .foregroundColor(.white)
+                                    .shadow(color: .white, radius: 1)
+                            }
+                            
                             
                         }
                     }
                     
                     if !showWeatherDetails {
-                        WeatherCard(nameSpace: namespace, show: $showWeatherDetails)
+                        WeatherCard(nameSpace: namespace, show: $showWeatherDetails, isLoading: $isLoading)
+                        
+                        //                    nameSpace: namespace, show: $showWeatherDetails,
                     }else{
                         WeatherDetailView(nameSpace: namespace, show: $showWeatherDetails)
                     }
@@ -119,7 +140,7 @@ struct WeatherNowView: View {
         .background(
             BackgroundHelper.setBackground(weatherMapViewModel: weatherMapViewModel)
         )
-        .ignoresSafeArea()
+        //        .ignoresSafeArea()
     }
     
     
