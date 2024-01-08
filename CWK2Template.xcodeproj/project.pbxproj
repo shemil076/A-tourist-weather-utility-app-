@@ -57,6 +57,7 @@
 		ADD5F18E2B431D7C007724A4 /* NightDust.swift in Sources */ = {isa = PBXBuildFile; fileRef = ADD5F18D2B431D7C007724A4 /* NightDust.swift */; };
 		ADD5F1902B431F27007724A4 /* DayFog.swift in Sources */ = {isa = PBXBuildFile; fileRef = ADD5F18F2B431F27007724A4 /* DayFog.swift */; };
 		ADD5F1922B431F5C007724A4 /* NightFog.swift in Sources */ = {isa = PBXBuildFile; fileRef = ADD5F1912B431F5C007724A4 /* NightFog.swift */; };
+		ADD690902B4CA2CD00C3F4A8 /* AppProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = ADD6908F2B4CA2CD00C3F4A8 /* AppProperties.swift */; };
 		ADD8E0CB2B48A514009D8BC7 /* ImageCard.swift in Sources */ = {isa = PBXBuildFile; fileRef = ADD8E0CA2B48A513009D8BC7 /* ImageCard.swift */; };
 		ADD8E0CD2B48A8B9009D8BC7 /* MoreImagesView.swift in Sources */ = {isa = PBXBuildFile; fileRef = ADD8E0CC2B48A8B9009D8BC7 /* MoreImagesView.swift */; };
 /* End PBXBuildFile section */
@@ -113,6 +114,7 @@
 		ADD5F18D2B431D7C007724A4 /* NightDust.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NightDust.swift; sourceTree = "<group>"; };
 		ADD5F18F2B431F27007724A4 /* DayFog.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DayFog.swift; sourceTree = "<group>"; };
 		ADD5F1912B431F5C007724A4 /* NightFog.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NightFog.swift; sourceTree = "<group>"; };
+		ADD6908F2B4CA2CD00C3F4A8 /* AppProperties.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = AppProperties.swift; path = ../../../../../../../../Downloads/AppProperties.swift; sourceTree = "<group>"; };
 		ADD8E0CA2B48A513009D8BC7 /* ImageCard.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageCard.swift; sourceTree = "<group>"; };
 		ADD8E0CC2B48A8B9009D8BC7 /* MoreImagesView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MoreImagesView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -172,6 +174,7 @@
 				ADD5F1682B42D801007724A4 /* BackgroundViews */,
 				689617572AEEF38A00FC5FBE /* ContentView.swift */,
 				ADD8E0CC2B48A8B9009D8BC7 /* MoreImagesView.swift */,
+				ADD6908F2B4CA2CD00C3F4A8 /* AppProperties.swift */,
 				689617682AEEF61200FC5FBE /* NavBar.swift */,
 				6896176A2AEEF68A00FC5FBE /* WeatherNowView.swift */,
 				6896176C2AEEF6A400FC5FBE /* WeatherForecastView.swift */,
@@ -360,6 +363,7 @@
 				ADD5F1802B4314AA007724A4 /* DayMist.swift in Sources */,
 				AD3689DB2B43EB580050AAC6 /* NightThunderstorm.swift in Sources */,
 				ADD5F1742B42F2C8007724A4 /* NightClouds.swift in Sources */,
+				ADD690902B4CA2CD00C3F4A8 /* AppProperties.swift in Sources */,
 				689617672AEEF4E600FC5FBE /* WeatherDataModel.swift in Sources */,
 				AD3689CD2B43DCC60050AAC6 /* DaySquall.swift in Sources */,
 				ADD5F1722B42EA16007724A4 /* DayClouds.swift in Sources */,

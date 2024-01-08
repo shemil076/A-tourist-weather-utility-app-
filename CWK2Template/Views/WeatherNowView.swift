@@ -175,4 +175,21 @@ struct Blur: UIViewRepresentable {
     func updateUIView(_ uiView: UIVisualEffectView, context: Context) {}
 }
 
+struct AddResponsiveness<Content:View>:View{
+    let isLandscape:Bool
+    @ViewBuilder var content:()->Content
+    var body: some View{
+        
+        if(isLandscape){
+            HStack{
+                content()
+            }
+        }else{
+            VStack{
+                content()
+            }
+        }
+        
+    }
+}
 
