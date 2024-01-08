@@ -16,42 +16,78 @@ struct WeatherForecastView: View {
                 VStack(alignment: .leading, spacing: 16) {
                     if let hourlyData = weatherMapViewModel.weatherDataModel?.hourly {
                         
-                        ScrollView(.horizontal, showsIndicators: false) {
+                        VStack{
                             
-                            HStack(spacing: 20) {
-                                
-                                ForEach(hourlyData) { hour in
-                                    HourWeatherView(current: hour)
-                                    
-                                }
+                            Label {
+                                Text("HOURLY FORECAST")
+                                    .font(.subheadline)
+                                    .bold()
+                                    .shadow(color: Color.white, radius: 5, x: 0, y: 0)
+                            } icon: {
+                                Image(systemName: "hourglass")
+                                    .shadow(color: Color.white, radius: 5, x: 0, y: 0)
                             }
-                            .padding(.horizontal, 16)
-                            .padding(.top, 20)
-                        }
-                        .frame(height: 200)
+                            .padding(.top,10)
+                            
+                            ScrollView(.horizontal, showsIndicators: false) {
+                                
+                                HStack(spacing: 20) {
+                                    
+                                    ForEach(hourlyData) { hour in
+                                        HourWeatherView(current: hour)
+                                        
+                                    }
+                                }
+                                .padding(.horizontal, 16)
+                            }
+                        }.frame(width: UIScreen.main.bounds.width / 1.04 , height: UIScreen.main.bounds.height/3)
+                            .background(
+                                Rectangle()
+                                    .fill(.ultraThinMaterial)
+                                    .opacity(0.7)
+                                    .frame(width: UIScreen.main.bounds.width / 1.04 , height: UIScreen.main.bounds.height/2.5)
+                                    .cornerRadius(10)
+                                
+                                
+                            )
                     }
-                    Spacer()
                     Divider()
                     Spacer()
                         .padding(.horizontal, 16)
                         .padding(.vertical, 8)
                         .padding(.top,20)
                     
-                    ScrollView {
+                    VStack{
                         
-                        VStack{
-                            ForEach(weatherMapViewModel.weatherDataModel?.daily ?? []) { day in
-                                DailyWeatherView(day: day)
-                            }
-                        }.padding(20)
-                            .padding(.vertical, 16)
-                            .padding(.bottom, 30)
-                        
+                        Label {
+                            Text("8-DAY FORECAST")
+                                .font(.subheadline)
+                                .bold()
+                                .shadow(color: Color.white, radius: 5, x: 0, y: 0)
+                                .foregroundColor(.white)
+                        } icon: {
+                            Image(systemName: "calendar").foregroundColor(.white)
+                                .shadow(color: Color.white, radius: 5, x: 0, y: 0)
+                        }.padding(.top,10)
+                       
+                        ScrollView {
+                            
+                            VStack{
+                                ForEach(weatherMapViewModel.weatherDataModel?.daily ?? []) { day in
+                                    DailyWeatherView(day: day)
+                                }
+                            }.padding(20)
+                                .padding(.vertical, 16)
+                                .padding(.bottom, 30)
+                            
+                        }
                     } .frame(width: UIScreen.main.bounds.width / 1.04 , height: UIScreen.main.bounds.height/3)
                         .background(
                             Rectangle()
                                 .fill(.ultraThinMaterial)
-                                .opacity(0.45)
+                                .background(.ultraThinMaterial)
+                                .overlay(Color.black.opacity(0.4))
+                                .opacity(0.4)
                                 .frame(width: UIScreen.main.bounds.width / 1.04 , height: UIScreen.main.bounds.height/3)
                                 .cornerRadius(10)
                             
@@ -61,15 +97,18 @@ struct WeatherForecastView: View {
                 }
                 .padding(16)
             }
-            .navigationBarTitleDisplayMode(.large)
+            .navigationBarTitleDisplayMode(.inline)
             .toolbar {
                 ToolbarItem(placement: .principal) {
                     HStack {
-                        Image(systemName: "sun.min.fill").foregroundColor(.white)
+                        Image(systemName: "sun.min.fill").foregroundColor(.gray)
+            
+//                            .shadow(color: Color.white, radius: 5, x: 0, y: 0)
                         VStack{
                             Text("Weather Forecast for \(weatherMapViewModel.city)").font(.title3)
                                 .fontWeight(.bold)
-                                .foregroundColor(.white)
+                                .foregroundColor(.gray)
+//                                .shadow(color: Color.white, radius: 5, x: 0, y: 0)
                         }
                     }
                 }

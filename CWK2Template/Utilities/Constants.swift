@@ -14,6 +14,4 @@ struct Constants {
     static let defualtLatitude = 51.503300
     static let defualtLongitude = -0.079400
     
-    static let newYorkLatitude = 40.6892
-    static let newYorkLongitude = -74.0445
 }

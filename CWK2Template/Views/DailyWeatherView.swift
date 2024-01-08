@@ -10,7 +10,7 @@ import SwiftUI
 struct DailyWeatherView: View {
     var day: Daily
     var body: some View {
-
+        
         let formattedDate = DateFormatterUtils.formattedDateWithWeekdayAndDay(from: TimeInterval(day.dt))
         
         let skyType =  String(day.weather[0].weatherDescription.rawValue)
@@ -29,7 +29,8 @@ struct DailyWeatherView: View {
             Text(formattedDate)
                 .font(.body) // Customize the font if needed
                 .padding()
-                .foregroundColor(.black)
+                .foregroundColor(.white)
+                .shadow(color: Color.white, radius: 5, x: 0, y: 0)
             
             
             
@@ -40,33 +41,49 @@ struct DailyWeatherView: View {
                         Text(word)
                             .font(.body)
                             .foregroundColor(.white)
+                            .shadow(color: Color.white, radius: 5, x: 0, y: 0)
                         
-                   
+                        
                     }
                 }
                 
+                Spacer()
                 AsyncImage(url: URL(string: "https://openweathermap.org/img/wn/\(day.weather[0].icon)@2x.png"))
                     .frame(width: UIScreen.main.bounds.width / 6 ,height: UIScreen.main.bounds.height / 67)
                     .shadow(color: Color.white, radius: 5, x: 0, y: 0)
                 
                 
                 
-//                Text("\((Double)(maxTemp) ?? 0, specifier: "%.2f") ºC / \((Double)(minTemp) ?? 0, specifier: "%.2f") ºC")
-//                    .font(.body) // Customize the font if needed
-//                    .padding()
-//                    .foregroundColor(.black)
-                
-                VStack{
-                Text("\((Double)(maxTemp) ?? 0, specifier: "%.2f") ºC")
-                        .font(.body) // Customize the font if needed
-                        .padding()
-                        .foregroundColor(.black)
-                    Divider()
+                //                Text("\((Double)(maxTemp) ?? 0, specifier: "%.2f") ºC / \((Double)(minTemp) ?? 0, specifier: "%.2f") ºC")
+                //                    .font(.body) // Customize the font if needed
+                //                    .padding()
+                //                    .foregroundColor(.black)
+                Spacer()
+                VStack(alignment: .center, spacing: 2){
+                    Spacer()
+                  
+                    Label {
+                        Text("\((Double)(maxTemp) ?? 0, specifier: "%.2f") ºC")
+                            .font(.body) // Customize the font if needed
+                            .padding()
+                            .shadow(color: Color.white, radius: 5, x: 0, y: 0)
+                    } icon: {
+                        Image(systemName: "thermometer.high")
+                            .shadow(color: Color.white, radius: 5, x: 0, y: 0)
+                    }
                     
-                    Text("\((Double)(minTemp) ?? 0, specifier: "%.2f") ºC")
+                    
+                    Label {
+                        Text("\((Double)(minTemp) ?? 0, specifier: "%.2f") ºC")
                             .font(.body) // Customize the font if needed
                             .padding()
                             .foregroundColor(.black)
+                            .shadow(color: Color.white, radius: 5, x: 0, y: 0)
+                    } icon: {
+                        Image(systemName: "thermometer.low")
+                            .shadow(color: Color.white, radius: 5, x: 0, y: 0)
+                    }
+                   
                     
                 }
                 
@@ -76,41 +93,46 @@ struct DailyWeatherView: View {
             
             
             HStack{
+                
+                
+                
                 Image(systemName: "humidity").foregroundColor(.black)
                 
                 Text("\(day.humidity)")
                 
-                
+                Text("||")
                 Image(systemName: "wind").foregroundColor(.black)
                 
-                Text("\(day.windSpeed)")
+                Text("\((Double)(day.windSpeed), specifier: "%.2f") mph")
+                
+                //                Text("\((Double)(forecast.current.windSpeed), specifier: "%.2f") mph").font(.headline)
                 
                 
-//                Label(<#T##title: StringProtocol##StringProtocol#>, systemImage: <#T##String#>)
+                //                Label(<#T##title: StringProtocol##StringProtocol#>, systemImage: <#T##String#>)
             }
             
             
             
             
-//            VStack(alignment: .center, spacing: 1){
-//               
-//                
-//              
-//
-//            }
+            //            VStack(alignment: .center, spacing: 1){
+            //
+            //
+            //
+            //
+            //            }
             
             
-
+            
         }
         .padding(10)
         .background(
             Rectangle()
-                   .fill(.ultraThinMaterial)
-                   .opacity(0.45)
-                   .frame(width: UIScreen.main.bounds.width / 1 , height: UIScreen.main.bounds.height / 4)
-                   .cornerRadius(10)
+                .fill(.ultraThinMaterial)
+                .opacity(0.45)
+                .frame(width: UIScreen.main.bounds.width / 1.1 , height: UIScreen.main.bounds.height / 4)
+                .cornerRadius(10)
         )
-
+        
     }
 }
 

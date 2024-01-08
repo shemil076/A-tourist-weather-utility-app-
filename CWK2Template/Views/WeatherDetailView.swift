@@ -39,24 +39,6 @@ struct WeatherDetailView: View {
                 VStack{
                     Spacer()
                     
-                    //
-                    //                    Label {
-                    //                        Text(skyType).font(.headline)
-                    //                    } icon: {
-                    //                        AsyncImage(url: URL(string: "https://openweathermap.org/img/wn/\(forecast.current.weather[0].icon)@2x.png"))
-                    //                            .matchedGeometryEffect(id: "thermometer-icon", in: nameSpace)
-                    //                            .shadow(radius: 5, x: 0, y: 2)
-                    //                    }
-                    //                    Text("\((weatherMapViewModel.city).uppercased())")
-                    //                        .bold()
-                    //                        .font(.custom("", size: 50))
-                    //                        .padding(.trailing,10)
-                    //                        .matchedGeometryEffect(id: "temp", in: nameSpace)
-                    //                    //                        .frame(maxWidth:.infinity)
-                    //                        .padding(10)
-                    //                        .foregroundColor(.white)
-                    //                        .background(Blur(style: .systemMaterial).opacity(0.3))
-                    //                        .cornerRadius(10)
                     
                     
                     VStack{
@@ -68,9 +50,7 @@ struct WeatherDetailView: View {
                             .shadow(color: Color.white, radius: 5, x: 0, y: 0)
                         
                         HStack{
-//                            Text($weatherMapViewModel.coordinate.latitude).font(.headline)
-                            
-//                            Text("\((Double)(forecast.current.windSpeed), specifier: "%.2f") mph").font(.headline)
+
                             
                             Text("Lat: \((Double)(currentLatitude), specifier: "%.2f") º").font(.headline)
                             Text("Lon: \((Double)(currentLongitude), specifier: "%.2f") º").font(.headline)

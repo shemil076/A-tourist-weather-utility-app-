@@ -15,11 +15,14 @@ class WeatherMapViewModel: ObservableObject {
     @Published var city = "London"
     @Published var coordinates: CLLocationCoordinate2D?
     @Published var region: MKCoordinateRegion = MKCoordinateRegion()
+    @Published var hasError : Bool = false
     init() {
 // MARK:  create Task to load London weather data when the app first launches
         Task {
             do {
-                try await getCoordinatesForCity(cityName: "London")
+                try await getCoordinatesForCity(cityName: city)
+                
+               
                 let weatherData = try await loadData(lat: coordinates?.latitude ?? Constants.defualtLatitude, lon: coordinates?.longitude ?? Constants.defualtLongitude)
                 print("Weather data loaded: \(String(describing: weatherData.timezone))")
                 
@@ -27,17 +30,25 @@ class WeatherMapViewModel: ObservableObject {
                 // Handle errors if necessary
                 print("Error loading weather data: \(error)")
             }
+            
         }
     }
     func getCoordinatesForCity(cityName: String) async throws {
 // MARK:  complete the code to get user coordinates for user entered place
 // and specify the map region
+        var usingCity = city
+        
+        if city == "London" {
+            usingCity = "London, UK"
+        }
+        if city.lowercased() == "new york" {
+            usingCity = "New York City, NY, USA"
+        }
         
 
         let geocoder = CLGeocoder()
-        if let placemarks = try? await geocoder.geocodeAddressString(city),
+        if let placemarks = try? await geocoder.geocodeAddressString(usingCity),
            let location = placemarks.first?.location?.coordinate {
-
             DispatchQueue.main.async {
                 self.coordinates = location
                 self.region = MKCoordinateRegion(center: location, span: MKCoordinateSpan(latitudeDelta: 0.01, longitudeDelta: 0.01))
@@ -45,6 +56,7 @@ class WeatherMapViewModel: ObservableObject {
         } else {
             // Handle error here if geocoding fails
             print("Error: Unable to find the coordinates for the club.")
+            hasError = true
         }
     }
 
@@ -171,14 +183,3 @@ class WeatherMapViewModel: ObservableObject {
     }
 }
 
-
-//        let locations: [Location] = loadLocationsFromJSONFile() ?? []
-//
-//
-//        if let location = locations.first(where: { $0.cityName == "\(cityName)" }) {
-//
-//            print("=======>> calling getCoordinatesForCity() ")
-//            print("Latitude: \(location.coordinates.latitude), Longitude: \(location.coordinates.longitude)")
-//                } else {
-//                    print("City not found")
-//                }
