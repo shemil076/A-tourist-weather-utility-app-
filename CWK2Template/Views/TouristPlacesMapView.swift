@@ -23,29 +23,25 @@ struct TouristPlacesMapView: View {
     
     var body: some View {
         NavigationView {
-            VStack(spacing: 5) {
-                if weatherMapViewModel.coordinates != nil {
-                    VStack(spacing: 10){
+            ScrollView{
+                VStack(spacing: 5) {
+                    if weatherMapViewModel.coordinates != nil {
+                        VStack(spacing: 10){
 
-                        
-                        Map{
-                            ForEach(locations.filter { $0.cityName == weatherMapViewModel.city }) { location in
-                                Marker(location.name, coordinate: location.coordinates)
-                            }
                             
-                        }
-                     
-                    }
+                            Map{
+                                ForEach(locations.filter { $0.cityName == weatherMapViewModel.city }) { location in
+                                    Marker(location.name, coordinate: location.coordinates)
+                                }
+                                
+                            }
+                         
+                        }.cornerRadius(10)
 
-                }
-                Spacer()
-                if !hasImages {
-                    VStack{
-                        Text("Tourist attractions in \(weatherMapViewModel.city)")
-                            .font(.custom("", size: 24)).bold()
-                            .foregroundColor(Color.white)
-                            .padding(.top, 20)
-                        ScrollView{
+                    }
+                    Spacer()
+                    if !hasImages {
+                        VStack( spacing: 10){
                             HStack{
                                 LazyVGrid(columns: columns, spacing: 20) {
                                     ForEach(locations.filter { $0.cityName == weatherMapViewModel.city }) { location in
@@ -61,45 +57,66 @@ struct TouristPlacesMapView: View {
                                     }
                                     
                                 }
-//                                .onAppear{
-//                                    checkForEmptyLocations()
-//                                }
+
                                 
-                                
+                            }.padding(.top, 20)
+                        }.padding(.bottom , 10)
+                        .sheet(isPresented: $showDetailView) {
+                            
+                            if showDetailView, let location = selectedLocation{
+                                MoreImagesView(location: location)
                             }
-                        }.padding(.top, 20)
-                    }.sheet(isPresented: $showDetailView) {
-                        
-                        if showDetailView, let location = selectedLocation{
-                            MoreImagesView(location: location)
+                            
+                            
+                            
                         }
-                        
-                        
-                        
+                        .background(
+                            Rectangle()
+                                .fill(.ultraThinMaterial)
+                                .overlay(Color.black.opacity(0.4))
+                                .opacity(0.6)
+                                .frame(width: UIScreen.main.bounds.width / 1.1)
+                                .cornerRadius(10)
+                        )
                     }
-                    .background(
-                        Rectangle()
-                            .fill(.ultraThinMaterial)
-                            .opacity(0.6)
-                            .frame(width: UIScreen.main.bounds.width / 1.1 , height: UIScreen.main.bounds.height / 2.5)
-                            .cornerRadius(10)
+                    
+                }.alert(isPresented: $showAlertIfNoImage) {
+                    Alert(
+                        title: Text("No Location Found"),
+                        message: Text("There are no images and coordinates found with the specified city."),
+                        dismissButton: .default(Text("OK"), action: {
+                            // This code will be executed when the OK button is pressed
+                            hasImages = true
+                        })
                     )
                 }
-                
-            }.alert(isPresented: $showAlertIfNoImage) {
-                Alert(
-                    title: Text("No Location Found"),
-                    message: Text("There are no images and coordinates found with the specified city."),
-                    dismissButton: .default(Text("OK"), action: {
-                        // This code will be executed when the OK button is pressed
-                        hasImages = true
-                    })
-                )
-            }.frame(height:700)
-                .padding()
-                .background(BackgroundHelper.setBackground(weatherMapViewModel: weatherMapViewModel))
-            //                .ignoresSafeArea()
+                .frame(height:700)
+                    .padding()
+                    .background(BackgroundHelper.setBackground(weatherMapViewModel: weatherMapViewModel))
+                //                .ignoresSafeArea()
+            }
+            .navigationBarTitleDisplayMode(.inline)
+            .toolbar {
+                ToolbarItem(placement: .principal) {
+                    HStack {
+                        Image(systemName: "pin.circle").foregroundColor(.gray)
+            
+                        VStack{
+                            Text("Tourist attractions in \(weatherMapViewModel.city)").font(.title3)
+                                .fontWeight(.bold)
+                                .foregroundColor(.gray)
+
+                        }
+                    }
+                }
+            }
+//            .frame(maxWidth: .infinity, maxHeight: .infinity)
+//            .background(
+//                BackgroundHelper.setBackground(weatherMapViewModel: weatherMapViewModel)
+//            )
+            
         }
+        
         .onAppear {
             // process the loading of tourist places
             locations = weatherMapViewModel.loadLocationsFromJSONFile() ?? []

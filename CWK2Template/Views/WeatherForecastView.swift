@@ -40,12 +40,13 @@ struct WeatherForecastView: View {
                                 }
                                 .padding(.horizontal, 16)
                             }
-                        }.frame(width: UIScreen.main.bounds.width / 1.04 , height: UIScreen.main.bounds.height/3)
+                        }.padding(.bottom , 10)
+                        .frame(width: UIScreen.main.bounds.width / 1.04)
                             .background(
                                 Rectangle()
                                     .fill(.ultraThinMaterial)
                                     .opacity(0.7)
-                                    .frame(width: UIScreen.main.bounds.width / 1.04 , height: UIScreen.main.bounds.height/2.5)
+                                    .frame(width: UIScreen.main.bounds.width / 1.04)
                                     .cornerRadius(10)
                                 
                                 
@@ -81,17 +82,15 @@ struct WeatherForecastView: View {
                                 .padding(.bottom, 30)
                             
                         }
-                    } .frame(width: UIScreen.main.bounds.width / 1.04 , height: UIScreen.main.bounds.height/3)
+                    } .frame(width: UIScreen.main.bounds.width / 1.04 , height: UIScreen.main.bounds.height/2)
                         .background(
                             Rectangle()
                                 .fill(.ultraThinMaterial)
                                 .background(.ultraThinMaterial)
                                 .overlay(Color.black.opacity(0.4))
                                 .opacity(0.4)
-                                .frame(width: UIScreen.main.bounds.width / 1.04 , height: UIScreen.main.bounds.height/3)
+                                .frame(width: UIScreen.main.bounds.width / 1.04)
                                 .cornerRadius(10)
-                            
-                            
                         )
                     
                 }
@@ -103,12 +102,11 @@ struct WeatherForecastView: View {
                     HStack {
                         Image(systemName: "sun.min.fill").foregroundColor(.gray)
             
-//                            .shadow(color: Color.white, radius: 5, x: 0, y: 0)
                         VStack{
                             Text("Weather Forecast for \(weatherMapViewModel.city)").font(.title3)
                                 .fontWeight(.bold)
                                 .foregroundColor(.gray)
-//                                .shadow(color: Color.white, radius: 5, x: 0, y: 0)
+
                         }
                     }
                 }
@@ -116,14 +114,10 @@ struct WeatherForecastView: View {
             .frame(maxWidth: .infinity, maxHeight: .infinity)
             .background(
                 BackgroundHelper.setBackground(weatherMapViewModel: weatherMapViewModel)
-                //                NightAsh()
             )
-            
-            //                            .ignoresSafeArea()
+        
         }
-        //        .frame(maxWidth: .infinity, maxHeight: .infinity)
-        //
-        //        .ignoresSafeArea()
+
     }
 }
 

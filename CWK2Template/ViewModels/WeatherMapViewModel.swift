@@ -23,7 +23,7 @@ class WeatherMapViewModel: ObservableObject {
                 try await getCoordinatesForCity(cityName: city)
                 
                
-                let weatherData = try await loadData(lat: coordinates?.latitude ?? Constants.defualtLatitude, lon: coordinates?.longitude ?? Constants.defualtLongitude)
+                let weatherData = try await loadData(lat: coordinates?.latitude ?? Constants.defaultLatitude, lon: coordinates?.longitude ?? Constants.defaultLongitude)
                 print("Weather data loaded: \(String(describing: weatherData.timezone))")
                 
             } catch {

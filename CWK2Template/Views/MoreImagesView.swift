@@ -9,11 +9,6 @@ import SwiftUI
 
 struct MoreImagesView: View {
     let location: Location
-//    @Binding var locations: [Location]
-//    var selectedImage : String
-//    var nameSpace : Namespace.ID
-    
-//    var imageNames: [String] = ["paris-eiffeltower-1", "paris-eiffeltower-2"]
     var body: some View {
         ScrollView{
             Text(location.name)

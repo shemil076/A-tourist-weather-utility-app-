@@ -35,7 +35,7 @@ struct WeatherDetailView: View {
                 let currentLongitude =  weatherMapViewModel.coordinates?.longitude ?? 0
                 
                 
-                //                forecast.current.windSpeed
+
                 VStack{
                     Spacer()
                     
@@ -59,7 +59,6 @@ struct WeatherDetailView: View {
                         Text("\((Double)(weatherMapViewModel.weatherDataModel?.current.temp ?? 0), specifier: "%.2f") ºC")
                             .bold()
                             .font(.title3)
-//                            .matchedGeometryEffect(id: "temp", in: nameSpace)
                         
                         AsyncImage(url: URL(string: "https://openweathermap.org/img/wn/\(forecast.current.weather[0].icon)@2x.png"))
                             .matchedGeometryEffect(id: "thermometer-icon", in: nameSpace)
@@ -80,7 +79,7 @@ struct WeatherDetailView: View {
                             Rectangle()
                                 .fill(.ultraThinMaterial)
                                 .opacity(0.6)
-                                .frame(width: UIScreen.main.bounds.width / 1.1 , height: UIScreen.main.bounds.height / 2.6)
+                                .frame(width: UIScreen.main.bounds.width / 1.1)
                                 .cornerRadius(10)
                         )
                     
@@ -193,7 +192,7 @@ struct WeatherDetailView: View {
                         
                     }.padding()
                     
-                    //                    =============================
+                
                     HStack{
                         
                         VStack(alignment: .leading){
@@ -307,9 +306,6 @@ struct WeatherDetailView: View {
             }
             
         }.frame(maxWidth: UIScreen.main.bounds.width , maxHeight: UIScreen.main.bounds.height)
-        //            .foregroundColor(.white)
-        //            .background(Blur(style: .systemMaterial).opacity(0.3))
-        //            .cornerRadius(30)
             .background(
                 Rectangle()
                     .fill(.ultraThinMaterial)

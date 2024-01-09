@@ -24,7 +24,7 @@ struct ImageCard: View {
             Rectangle()
                    .fill(.ultraThinMaterial)
                    .opacity(0.7)
-                   .frame(width: UIScreen.main.bounds.width / 3 , height: UIScreen.main.bounds.height / 3)
+                   .frame(width: UIScreen.main.bounds.width / 2.8 )
                    .cornerRadius(20)
         )
     }

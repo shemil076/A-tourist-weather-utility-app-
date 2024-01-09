@@ -49,7 +49,7 @@ struct WeatherCard: View {
                                         
                                         .matchedGeometryEffect(id: "Humidity-value", in: nameSpace)
                                 }
-                            }.padding(.bottom, 30)
+                            }.padding()
                             .background(
                                 Rectangle()
                                     .fill(.ultraThinMaterial)
@@ -75,7 +75,7 @@ struct WeatherCard: View {
                                         
                                         .matchedGeometryEffect(id: "Pressure-value", in: nameSpace)
                                 }
-                            }.padding(.bottom, 30)
+                            }.padding()
                             .background(
                                 Rectangle()
                                     .fill(.ultraThinMaterial)
@@ -100,7 +100,7 @@ struct WeatherCard: View {
                                         
                                         .matchedGeometryEffect(id: "WindSpeed-value", in: nameSpace)
                                 }
-                            }.padding(.bottom, 30)
+                            }.padding()
                             .background(
                                 Rectangle()
                                     .fill(.ultraThinMaterial)
@@ -125,7 +125,7 @@ struct WeatherCard: View {
                                         
                                         .matchedGeometryEffect(id: "visibility-value", in: nameSpace)
                                 }
-                            }.padding(.bottom, 30)
+                            }.padding()
                             .background(
                                 Rectangle()
                                     .fill(.ultraThinMaterial)
@@ -144,13 +144,8 @@ struct WeatherCard: View {
                     
                 }.padding(20)
             }
-//                .background(
-//                    Rectangle()
-//                        .fill(.ultraThinMaterial)
-//                        .mask(RoundedRectangle(cornerRadius: 30, style: .continuous))
-//                        .blur(radius: 30)
-//                        .matchedGeometryEffect(id: "blue", in: nameSpace)
-//                )
+
+
         }.frame(maxHeight: .infinity)
 
         .foregroundStyle(.white)

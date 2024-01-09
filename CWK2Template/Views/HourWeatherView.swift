@@ -63,7 +63,7 @@ struct HourWeatherView: View {
                 .background(.ultraThinMaterial)
                 .overlay(Color.black.opacity(0.4))
                 .opacity(0.4)
-                .frame(width: UIScreen.main.bounds.width / 2.5, height: UIScreen.main.bounds.height / 3.1)
+                .frame(width: UIScreen.main.bounds.width / 2.5)
                 .cornerRadius(30)
             
         )

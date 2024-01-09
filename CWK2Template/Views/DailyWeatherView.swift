@@ -52,12 +52,6 @@ struct DailyWeatherView: View {
                     .frame(width: UIScreen.main.bounds.width / 6 ,height: UIScreen.main.bounds.height / 67)
                     .shadow(color: Color.white, radius: 5, x: 0, y: 0)
                 
-                
-                
-                //                Text("\((Double)(maxTemp) ?? 0, specifier: "%.2f") ºC / \((Double)(minTemp) ?? 0, specifier: "%.2f") ºC")
-                //                    .font(.body) // Customize the font if needed
-                //                    .padding()
-                //                    .foregroundColor(.black)
                 Spacer()
                 VStack(alignment: .center, spacing: 2){
                     Spacer()
@@ -104,22 +98,10 @@ struct DailyWeatherView: View {
                 Image(systemName: "wind").foregroundColor(.black)
                 
                 Text("\((Double)(day.windSpeed), specifier: "%.2f") mph")
-                
-                //                Text("\((Double)(forecast.current.windSpeed), specifier: "%.2f") mph").font(.headline)
-                
-                
-                //                Label(<#T##title: StringProtocol##StringProtocol#>, systemImage: <#T##String#>)
+
             }
             
-            
-            
-            
-            //            VStack(alignment: .center, spacing: 1){
-            //
-            //
-            //
-            //
-            //            }
+
             
             
             
@@ -129,7 +111,7 @@ struct DailyWeatherView: View {
             Rectangle()
                 .fill(.ultraThinMaterial)
                 .opacity(0.45)
-                .frame(width: UIScreen.main.bounds.width / 1.1 , height: UIScreen.main.bounds.height / 4)
+                .frame(width: UIScreen.main.bounds.width / 1.1)
                 .cornerRadius(10)
         )
         
